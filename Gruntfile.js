@@ -3,12 +3,13 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         connect: {
-            options: {
+            server:{
+                options: {
                 port: 9000,
                 open: true,
                 livereload: 35729,
                 hostname: 'localhost'
-            },
+            } , 
 
             development: {
                 options: {
@@ -20,9 +21,16 @@ module.exports = function(grunt) {
                 }
             }
         }
+        }
+
+            
     });
 
     require('load-grunt-tasks')(grunt);
 
     grunt.registerTask('default', []);
+    grunt.registerTask('serve', [
+    'connect:server'
+]);
+    grunt.loadNpmTasks('grunt-contrib-connect');
 };
